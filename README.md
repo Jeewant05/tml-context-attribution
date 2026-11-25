@@ -111,6 +111,12 @@ pip install -r requirements.txt
 - Each shared file has one owner (tables above). Don't change someone else's file format without posting in the group chat first.
 - Never commit model weights, the Hugging Face cache, raw downloads or Slurm logs (see `.gitignore`). GitHub rejects files over 100 MB; keep anything big on ARC.
 
+## License
+
+Code and docs in this repo are under the [MIT License](LICENSE).
+
+The files in `data/nq/` are not ours and keep their own terms. They come from the [Lost in the Middle](https://github.com/nelson-liu/lost-in-the-middle) release (MIT), built on [NQ-Open](https://github.com/google-research-datasets/natural-questions/tree/master/nq_open) (CC BY-SA 3.0) and English Wikipedia passages (CC BY-SA). If you reuse them, credit those sources and share changes to the data under CC BY-SA. The same applies to `data/prompts.jsonl`, which is built from them.
+
 ## Status
 
 - [x] Plan and shared file formats
