@@ -121,9 +121,9 @@ The files in `data/nq/` are not ours and keep their own terms. They come from th
 
 - [x] Plan and shared file formats
 - [x] NQ-Open 10-passage files downloaded and checked
-- [ ] Dry run on Qwen3-0.6B, ~20 questions (Jeewant)
+- [ ] Dry run on Qwen3-8B, 20 questions (Nov 24)
 - [ ] `data/prompts.jsonl` (Dominic)
 - [ ] Scoring function tested on 5 hand-made cases (Yash)
-- [ ] Pilot on 50 questions with Qwen3-8B, go/no-go per attack (Jeewant)
+- [x] Pilot on 50 questions with Qwen3-8B, go/no-go per attack (Jeewant)
 - [ ] Full generation, attribution, recovery
 - [ ] `evaluate.py`, figures, report, slides (Adli)
