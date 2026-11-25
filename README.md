@@ -99,6 +99,7 @@ Each step reads and writes these files, so it can be built and tested on its own
 Build the environment inside an `interact` session on an A100 node, not on the login node:
 
 ```bash
+interact --partition=a100_normal_q --nodes=1 --ntasks-per-node=4 --gres=gpu:1 --mem=64G -t 2:00:00 --account=tml_2026
 module reset; module load Miniforge3
 conda create -p ~/.conda/envs/tml_a100 python=3.12
 source activate ~/.conda/envs/tml_a100
