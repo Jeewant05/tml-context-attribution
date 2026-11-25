@@ -17,12 +17,28 @@ TML Fall 2026 final project. We plant attacker text in 1 of the 10 retrieved pas
 ## Layout
 
 ```
-data/              prompts.jsonl (Dominic). Raw NQ downloads go in data/raw/ (not committed).
+data/nq/           the three 10-passage NQ-Open files (source data, see below)
+data/              prompts.jsonl (Dominic). Other raw downloads go in data/raw/ (not committed).
 src/               scripts: generate.py, attribute.py, evaluate.py, ...
 outputs/           generations.jsonl, recovery.jsonl (Jeewant)
 outputs/scores/    one {method}.jsonl per attribution method
 docs/              project plan
 ```
+
+## Source data: `data/nq/`
+
+The three 10-passage files from the [Lost in the Middle](https://github.com/nelson-liu/lost-in-the-middle) release (`qa_data/10_total_documents/`). Checked on Nov 24:
+
+- 2,655 rows each, 10 passages per row, same questions in the same order across the three files
+- the `isgold` passage sits at index 0, 4 and 9 respectively
+- the gold passage always has `hasanswer = true`, and no other passage ever does
+- row keys: `question`, `answers`, `ctxs`, `nq_annotated_gold`. Passage keys: `title`, `text`, `isgold`, `hasanswer` (`gold_at_4` and `gold_at_9` also have `id`, `score`, `original_retrieval_index`)
+
+| File | SHA-256 |
+| --- | --- |
+| `nq-open-10_total_documents_gold_at_0.jsonl.gz` | `192a05b27af2b09eec33ca0c94bb5cf82bcaf70d78b3bdff1258df34bf37aab9` |
+| `nq-open-10_total_documents_gold_at_4.jsonl.gz` | `f8425253dafc19cd9de31c06ab6c8b57d4da2bf48b8ea2d0790b805fb3aa1968` |
+| `nq-open-10_total_documents_gold_at_9.jsonl.gz` | `fab97badc6d69bae53c805bb198e8742a78ddf3c40a076989ef62891b76c997f` |
 
 ## Shared file formats
 
@@ -45,7 +61,8 @@ Each step reads and writes these files, so it can be built and tested on its own
 | `gold_idx` | int | index of the `isgold` passage |
 | `planted_idx` | list[int] | `[]` for clean, one index for link/caps, two for two_copy; never `gold_idx` |
 | `condition` | str | |
-| `passages` | list[str] | 10 passages, attack text already appended |
+| `titles` | list[str] | 10 passage titles. The Lost in the Middle prompt formats each passage as `Document [i](Title: {title}) {text}` (1-based `i`), so generation needs them |
+| `passages` | list[str] | 10 passage texts (no title), attack text already appended |
 
 ### `outputs/generations.jsonl` (Jeewant): one row per question × condition
 
@@ -97,6 +114,7 @@ pip install -r requirements.txt
 ## Status
 
 - [x] Plan and shared file formats
+- [x] NQ-Open 10-passage files downloaded and checked
 - [ ] Dry run on Qwen3-0.6B, ~20 questions (Jeewant)
 - [ ] `data/prompts.jsonl` (Dominic)
 - [ ] Scoring function tested on 5 hand-made cases (Yash)
