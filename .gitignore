@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Secrets
+.env
+*.token
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Raw downloads (re-download instead of committing)
+data/raw/
+
+# Models and caches
+hf_cache/
+.cache/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Slurm / job logs
+slurm-*.out
+slurm-*.err
+logs/
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls

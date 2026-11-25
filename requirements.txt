@@ -1,0 +1,8 @@
+torch
+transformers>=4.51  # Qwen3 support
+accelerate
+sentence-transformers  # all-MiniLM-L6-v2 for the similarity baseline
+numpy
+pandas
+matplotlib
+tqdm
