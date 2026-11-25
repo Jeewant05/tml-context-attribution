@@ -1,0 +1,5 @@
+JobID|JobName|Partition|AllocTRES|Elapsed|State|Purpose
+8978364|interactive|a100_normal_q|billing=116,cpu=8,gres/gpu:a100=1,gres/gpu=1,mem=64G,node=1|00:21:21|COMPLETED|env build + smoke test
+8979203|dry-run|a100_normal_q|billing=112,cpu=4,gres/gpu:a100=1,gres/gpu=1,mem=64G,node=1|00:04:14|COMPLETED|dry run, 20 questions
+8995768|pilot|a100_normal_q|billing=112,cpu=4,gres/gpu:a100=1,gres/gpu=1,mem=64G,node=1|00:21:11|COMPLETED|pilot, 50 questions (seed 1), 7 conditions
+8996299|generate|a100_normal_q|billing=112,cpu=4,gres/gpu:a100=1,gres/gpu=1,mem=64G,node=1|00:14:44|COMPLETED|full generation, 2,400 rows (600 questions x clean/link/caps/two_copy)
