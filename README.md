@@ -96,15 +96,18 @@ Each step reads and writes these files, so it can be built and tested on its own
 
 ## Setup (ARC)
 
+Build the environment inside an `interact` session on an A100 node, not on the login node:
+
 ```bash
-conda create -n tml python=3.11 -y
-conda activate tml
-pip install -r requirements.txt
+module reset; module load Miniforge3
+conda create -p ~/.conda/envs/tml_a100 python=3.12
+source activate ~/.conda/envs/tml_a100
+pip install torch "transformers>=4.51" accelerate sentence-transformers pandas tqdm
 ```
 
-- Check the shared `/common/data/models/` for Qwen3-8B before downloading it.
-- Point `HF_HOME` at a project or scratch directory, not your home directory.
-- Log the GPU type and hours for every job (needed for the compute section).
+- Model: `/common/data/models/qwen--Qwen3-8B` (shared copy on ARC, no download needed).
+- Slurm account `tml_2026`, partition `a100_normal_q` (see `jobs/*.sbatch`).
+- GPU type and hours for every job are in `docs/compute_log.md` (raw sacct lines in `jobs_log.csv`).
 
 ## Rules for the repo
 
@@ -121,9 +124,10 @@ The files in `data/nq/` are not ours and keep their own terms. They come from th
 
 - [x] Plan and shared file formats
 - [x] NQ-Open 10-passage files downloaded and checked
-- [ ] Dry run on Qwen3-0.6B, ~20 questions (Jeewant)
+- [ ] Dry run on Qwen3-8B, 20 questions (Nov 24)
 - [ ] `data/prompts.jsonl` (Dominic)
 - [ ] Scoring function tested on 5 hand-made cases (Yash)
-- [ ] Pilot on 50 questions with Qwen3-8B, go/no-go per attack (Jeewant)
+- [x] Pilot on 50 questions with Qwen3-8B, go/no-go per attack (Jeewant)
+- [x] Full generation: 2,400 rows, link 83%, caps 99%, two_copy 86% (Nov 25)
 - [ ] Full generation, attribution, recovery
 - [ ] `evaluate.py`, figures, report, slides (Adli)
